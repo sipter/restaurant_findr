@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-
+import StarIcon from '@mui/icons-material/Star';
 export const RestaurantCard = () => {
   const [restaurantData, setRestaurantData] = useState([]);
   // https://redi-final-restaurants.herokuapp.com/restaurants
@@ -15,7 +15,7 @@ export const RestaurantCard = () => {
     };
     getApiRestaurant();
   }, []);
-
+  console.log(restaurantData)
   return (
     <div className="cardContainer">
       {restaurantData && (
@@ -36,7 +36,7 @@ export const RestaurantCard = () => {
                   <img src={photos.photo_reference} alt="reference" />
                   <h2>{cuisine}</h2>
                   {formatted_address} <p>{social.phone}</p>
-                  <h2>{rating}</h2>
+                  <h2><StarIcon/>{rating}</h2>
                   <p>Open {opening_hours.hours.open}</p>
                   <p>Close {opening_hours.hours.close}</p>
                 </li>
