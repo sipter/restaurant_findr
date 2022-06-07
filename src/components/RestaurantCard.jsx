@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
-
 export const RestaurantCard = () => {
   const [restaurantData, setRestaurantData] = useState([]);
   // https://redi-final-restaurants.herokuapp.com/restaurants
@@ -12,28 +11,40 @@ export const RestaurantCard = () => {
         `https://redi-final-restaurants.herokuapp.com/restaurants`
       );
       const data = await response.json();
-      console.log(data.results);
       setRestaurantData(data.results);
-      
     };
     getApiRestaurant();
   }, []);
 
-  console.log("hello");
-
   return (
     <div className="cardContainer">
-        {restaurantData && (
+      {restaurantData && (
         <>
-            <ul>
-            {restaurantData.map(({name, rating, cuisine, formatted_address}) => (
+          <ul>
+            {restaurantData.map(
+              ({
+                name,
+                photos,
+                social,
+                rating,
+                cuisine,
+                formatted_address,
+                opening_hours
+              }) => (
                 <li>
-                    <h3>{name}</h3> {cuisine} {formatted_address} <h2>{rating}</h2>
+                  <h3>{name}</h3>
+                  <img src={photos.photo_reference} alt="reference" />
+                  <h2>{cuisine}</h2>
+                  {formatted_address} <p>{social.phone}</p>
+                  <h2>{rating}</h2>
+                  <p>Open {opening_hours.hours.open}</p>
+                  <p>Close {opening_hours.hours.close}</p>
                 </li>
-            ))}
-            </ul>
+              )
+            )}
+          </ul>
         </>
-        )}
+      )}
     </div>
   );
 };
