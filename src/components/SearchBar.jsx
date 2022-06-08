@@ -1,9 +1,16 @@
 import React from "react";
 
-export const SearchBar = () => {
+export const SearchBar = ({ onChange }) => {
   return (
     <>
-      <div style={{ height: "200px", backgroundColor: "red" }} />
+      <div className="search-input">
+        <input
+          placeholder="Search"
+          className="search"
+          type="text"
+          onChange={onChange}
+        />
+      </div>
     </>
   );
 };
