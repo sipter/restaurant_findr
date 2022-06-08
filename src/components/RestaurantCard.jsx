@@ -68,11 +68,11 @@ export const RestaurantCard = () => {
                       <p>Open {opening_hours.hours.open}</p>
                       <p>Close {opening_hours.hours.close}</p>
                       <p>
-                        {delivery ? <p>Delivery</p> : pickup && <h1>pickup</h1>}
+                        {delivery ? <p>Delivery</p> : pickup && <h1>Pickup</h1>}
                         {opening_hours.open_now === true ? (
                           <p>Open now</p>
                         ) : (
-                          <p>close now</p>
+                          <p>Close now</p>
                         )}
                       </p>
                     </li>
