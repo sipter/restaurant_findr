@@ -5,7 +5,7 @@ export const SearchBar = ({ onChange }) => {
     <>
       <div className="search-input">
         <input
-          placeholder="Search"
+          placeholder="type here your favorite Cuisine"
           className="search"
           type="text"
           onChange={onChange}

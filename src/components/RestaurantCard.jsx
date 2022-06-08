@@ -14,7 +14,7 @@ export const RestaurantCard = () => {
   };
 
   const filterSearch = (name) => {
-    return name.name.toLowerCase().includes(searchValue);
+    return name.cuisine.toLowerCase().includes(searchValue);
   };
 
   useEffect(() => {
@@ -29,11 +29,11 @@ export const RestaurantCard = () => {
   }, []);
   console.log(restaurantData);
 
-  const hasProducts = restaurantData.length > 0;
+  const hasRestaurants = restaurantData.length > 0;
 
   return (
     <>
-      {hasProducts && <SearchBar onChange={onSearchChange} />}
+      {hasRestaurants && <SearchBar onChange={onSearchChange} />}
 
       <div className="cardContainer">
         {restaurantData && (
