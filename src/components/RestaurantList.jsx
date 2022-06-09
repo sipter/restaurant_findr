@@ -57,7 +57,7 @@ export const RestaurantList = () => {
                   name={name}
                   cuisine={cuisine}
                   rating={rating}
-                  photos={photos[0].photo__reference}
+                  photos={photos[0].photo_reference}
                   openingHours={opening_hours.hours.open}
                   closingHours={opening_hours.hours.close}
                 />
