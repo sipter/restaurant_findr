@@ -20,7 +20,7 @@ export const RestaurantCard = ({
 }) => {
   const API_KEY = process.env.REACT_APP_API_KEY;
 
-  const img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=200&photo_reference=${photos}&key=${API_KEY}`;
+  const img =`https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=200&photo_reference=${photos}&key=${API_KEY}`;
   return (
     // <>
     <Card
