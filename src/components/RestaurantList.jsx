@@ -33,7 +33,7 @@ export const RestaurantList = () => {
   return (
     <>
       {hasRestaurants && <SearchBar onChange={onSearchChange} />}
-      {restaurantData && (
+      {restaurantData && searchValue !== "" && (
         <>
           {restaurantData
             .filter(filterSearch)
