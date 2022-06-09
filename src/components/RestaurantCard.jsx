@@ -1,87 +1,66 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import StarIcon from "@mui/icons-material/Star";
 import { SearchBar } from "./SearchBar";
+import { Card } from "@mui/material";
+import { CardContent, Typography, CardActions } from "@mui/material";
+import { Button } from "@mui/material";
+import { CardMedia } from "@mui/material";
+import StarIcon from "@mui/icons-material/Star";
 
-export const RestaurantCard = () => {
-  const [restaurantData, setRestaurantData] = useState([]);
-  const [searchValue, setSearchValue] = useState("");
+export const RestaurantCard = ({
+  name,
+  photos,
+  social,
+  rating,
+  cuisine,
+  formatted_address,
+  openingHours,
+  delivery,
+  pickup,
+  closingHours,
+}) => {
   const API_KEY = process.env.REACT_APP_API_KEY;
-  // https://redi-final-restaurants.herokuapp.com/restaurants
-
-  const onSearchChange = (event) => {
-    setSearchValue(event.target.value);
-  };
-
-  const filterSearch = (name) => {
-    return name.cuisine.toLowerCase().includes(searchValue);
-  };
-
-  useEffect(() => {
-    const getApiRestaurant = async () => {
-      const response = await fetch(
-        `https://redi-final-restaurants.herokuapp.com/restaurants`
-      );
-      const data = await response.json();
-      setRestaurantData(data.results);
-    };
-    getApiRestaurant();
-  }, []);
-  console.log(restaurantData);
-
-  const hasRestaurants = restaurantData.length > 0;
-
+  const img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=200&photo_reference=${photos}&key=${API_KEY}`;
   return (
-    <>
-      {hasRestaurants && <SearchBar onChange={onSearchChange} />}
-
-      <div className="cardContainer">
-        {restaurantData && (
-          <>
-            <ul>
-              {restaurantData
-                .filter(filterSearch)
-                .map(
-                  ({
-                    name,
-                    photos,
-                    social,
-                    rating,
-                    cuisine,
-                    formatted_address,
-                    opening_hours,
-                    delivery,
-                    pickup,
-                  }) => (
-                    <li>
-                      <h3>{name}</h3>
-                      <img
-                        src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=200&photo_reference=${photos[0].photo_reference}&key=${API_KEY}`}
-                        alt="reference"
-                      />
-                      <h2>{cuisine}</h2>
-                      {formatted_address} <p>{social.phone}</p>
-                      <h2>
-                        <StarIcon />
-                        {rating}
-                      </h2>
-                      <p>Open {opening_hours.hours.open}</p>
-                      <p>Close {opening_hours.hours.close}</p>
-                      <p>
-                        {delivery ? <p>Delivery</p> : pickup && <h1>Pickup</h1>}
-                        {opening_hours.open_now === true ? (
-                          <p>Open now</p>
-                        ) : (
-                          <p>Close now</p>
-                        )}
-                      </p>
-                    </li>
-                  )
-                )}
-            </ul>
-          </>
-        )}
-      </div>
-    </>
+    // <>
+    <Card
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: 2,
+        height: "auto",
+        width: "50%",
+      }}
+    >
+      <CardContent>
+        <Typography component="h2" sx={{ fontWeight: "bold" }}>
+          {name}
+        </Typography>
+        <Typography component="p">{cuisine}</Typography>
+        <Typography component="p">
+          {rating} <StarIcon sx={{ color: "gold", fontSize: 18 }} />
+        </Typography>
+        <Typography component="p">
+          Working hours: <br></br>
+          Open: {openingHours} <br></br>
+          Close: {closingHours}
+        </Typography>
+        {/* <CardActions>
+          <Button
+            variant="outlined"
+            endIcon={<AddIcon />}
+            onClick={() => addItemToCart(starter)}
+          >
+            {starter.price}
+          </Button>
+        </CardActions> */}
+      </CardContent>
+      <CardMedia
+        sx={{ width: 151, height: "auto" }}
+        component="img"
+        image={img}
+        alt="food img"
+      />
+    </Card>
   );
 };
