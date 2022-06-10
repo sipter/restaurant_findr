@@ -1,7 +1,8 @@
 import React from "react";
 import { HeaderImg } from "../components/HeaderImg";
 import { RestaurantList } from "../components/RestaurantList";
-import { RestaurantCard } from "../components/RestaurantCard";
+import { ListImg } from '../components/ListImg'
+
 
 const styles = {
   paperContainer: {
@@ -20,6 +21,8 @@ export const Home = () => {
       <body style={styles.paperContainer} >
         <HeaderImg />
         <RestaurantList />
+        <ListImg/>
+        
       </body>
     </>
   );
