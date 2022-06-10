@@ -31,8 +31,7 @@ export const RestaurantCard = ({
         justifyContent: "space-between",
         marginBottom: 2,
         height: "auto",
-        width: "50%",
-        margin: '2rem'
+        marginTop: 3,
       }}
     >
       <CardContent>
