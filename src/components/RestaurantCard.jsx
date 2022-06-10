@@ -18,12 +18,13 @@ export const RestaurantCard = ({
   pickup,
   closingHours,
 }) => {
-  const API_KEY = process.env.REACT_APP_API_KEY;
 
+  const API_KEY = process.env.REACT_APP_API_KEY;
   const img =`https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=200&photo_reference=${photos}&key=${API_KEY}`;
   return (
     // <>
     <Card
+      
       sx={{
         display: "flex",
         flexDirection: "row",
@@ -31,6 +32,7 @@ export const RestaurantCard = ({
         marginBottom: 2,
         height: "auto",
         width: "50%",
+        margin: '2rem'
       }}
     >
       <CardContent>

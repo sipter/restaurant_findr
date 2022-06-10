@@ -53,6 +53,7 @@ export const RestaurantList = () => {
                 index
               ) => (
                 <RestaurantCard
+                 
                   key={index}
                   name={name}
                   cuisine={cuisine}

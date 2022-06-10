@@ -17,7 +17,7 @@ const styles = {
 export const Home = () => {
   return (
     <>
-      <body style={styles.paperContainer}>
+      <body style={styles.paperContainer} >
         <HeaderImg />
         <RestaurantList />
       </body>
