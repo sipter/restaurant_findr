@@ -12,6 +12,7 @@ export const RestaurantList = () => {
 
   const onSearchChange = (event) => {
     setSearchValue(event.target.value);
+    setSelectedRestaurant(null)
   };
 
   const filterSearch = (name) => {
@@ -65,9 +66,10 @@ export const RestaurantList = () => {
                   photos={photos[0].photo_reference}
                   openingHours={opening_hours.hours.open}
                   closingHours={opening_hours.hours.close}
+                  
                 />
                 {
-                 selectedRestaurant === index ? <ListImg/> : null
+                 selectedRestaurant === index ? <ListImg customerPhotos = {photos[0].links} /> : null
                 
                 }
               </>
