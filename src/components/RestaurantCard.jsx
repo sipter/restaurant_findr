@@ -17,6 +17,7 @@ export const RestaurantCard = ({
   delivery,
   pickup,
   closingHours,
+  onClick
 }) => {
 
   const API_KEY = process.env.REACT_APP_API_KEY;
@@ -24,7 +25,7 @@ export const RestaurantCard = ({
   return (
     // <>
     <Card
-      
+      onClick={onClick}
       sx={{
         display: "flex",
         flexDirection: "row",

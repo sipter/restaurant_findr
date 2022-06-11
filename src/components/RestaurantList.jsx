@@ -2,11 +2,12 @@ import React from "react";
 import { RestaurantCard } from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import { SearchBar } from "./SearchBar";
+import { ListImg } from "./ListImg";
 
 export const RestaurantList = () => {
   const [restaurantData, setRestaurantData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
-
+  const [selectedRestaurant, setSelectedRestaurant] = useState(null)
   // https://redi-final-restaurants.herokuapp.com/restaurants
 
   const onSearchChange = (event) => {
@@ -28,6 +29,8 @@ export const RestaurantList = () => {
     getApiRestaurant();
   }, []);
   console.log(restaurantData);
+
+  
 
   const hasRestaurants = restaurantData.length > 0;
   return (
@@ -52,8 +55,9 @@ export const RestaurantList = () => {
                 },
                 index
               ) => (
+                <>
                 <RestaurantCard
-                 
+                 onClick={() => {setSelectedRestaurant(index); console.log("ahah");}}
                   key={index}
                   name={name}
                   cuisine={cuisine}
@@ -62,6 +66,11 @@ export const RestaurantList = () => {
                   openingHours={opening_hours.hours.open}
                   closingHours={opening_hours.hours.close}
                 />
+                {
+                 selectedRestaurant === index ? <ListImg/> : null
+                
+                }
+              </>
               )
             )}
         </>

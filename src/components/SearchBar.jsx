@@ -31,6 +31,7 @@ export const SearchBar = ({ onChange }) => {
       component="form"
       noValidate
       autoComplete="off"
+      sx={{paddingTop: "32px"}}
     >
       <TextField
         id="custom-css-outlined-input"

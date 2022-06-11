@@ -23,7 +23,6 @@ export const Home = () => {
       <Container>
          <HeaderImg />
         <RestaurantList />
-        <ListImg/>
       </Container>
        
     </>
