@@ -1,10 +1,13 @@
 import React from "react";
-import { SearchBar } from "./SearchBar";
 import { Card } from "@mui/material";
-import { CardContent, Typography, CardActions } from "@mui/material";
-import { Button } from "@mui/material";
+import { CardContent, Typography } from "@mui/material";
 import { CardMedia } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
+import { Box } from "@mui/material";
+import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
+import DoneIcon from "@mui/icons-material/Done";
+import CloseIcon from "@mui/icons-material/Close";
+import TakeoutDiningIcon from "@mui/icons-material/TakeoutDining";
 
 export const RestaurantCard = ({
   name,
@@ -17,11 +20,10 @@ export const RestaurantCard = ({
   delivery,
   pickup,
   closingHours,
-  onClick
+  onClick,
 }) => {
-
   const API_KEY = process.env.REACT_APP_API_KEY;
-  const img =`https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=200&photo_reference=${photos}&key=${API_KEY}`;
+  const img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=200&photo_reference=${photos}&key=${API_KEY}`;
   return (
     // <>
     <Card
@@ -40,14 +42,33 @@ export const RestaurantCard = ({
           {name}
         </Typography>
         <Typography component="p">{cuisine}</Typography>
-        <Typography component="p">
-          {rating} <StarIcon sx={{ color: "gold", fontSize: 18 }} />
-        </Typography>
+
         <Typography component="p">
           Working hours: <br></br>
           Open: {openingHours} <br></br>
           Close: {closingHours}
         </Typography>
+        <Box
+          sx={{
+            width: 220,
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            height: "auto",
+          }}
+        >
+          <Typography component="p">
+            <StarIcon sx={{ color: "gold" }} /> {rating} 
+          </Typography>
+          <Typography component="p">
+            <DeliveryDiningIcon sx={{ color: "gold" }} />
+            {delivery === true ? <DoneIcon /> : <CloseIcon />}
+          </Typography>
+          <Typography component="p">
+            <TakeoutDiningIcon sx={{ color: "gold" }} />
+            {pickup === true ? <DoneIcon /> : <CloseIcon />}
+          </Typography>
+        </Box>
         {/* <CardActions>
           <Button
             variant="outlined"
