@@ -3,13 +3,15 @@ import { RestaurantCard } from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import { SearchBar } from "./SearchBar";
 import { ListImg } from "./ListImg";
+import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
+import TakeoutDiningIcon from "@mui/icons-material/TakeoutDining";
 
 export const RestaurantList = () => {
   const [restaurantData, setRestaurantData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
-  const [selectedDelivery, setSelectedDelivery] = useState(false);
-  // https://redi-final-restaurants.herokuapp.com/restaurants
+  const [selectedDelivery, setSelectedDelivery] = useState(true);
+  const [selectedPickup, setSelectedPickup] = useState(true);
 
   const onSearchChange = (event) => {
     setSearchValue(event.target.value);
@@ -17,20 +19,14 @@ export const RestaurantList = () => {
   };
 
   const filterSearch = (restaurant) => {
-    return restaurant.cuisine.toLowerCase().includes(searchValue);
+    return restaurant.cuisine.toString().toLowerCase().includes(searchValue);
   };
 
   const filterDelivery = (restaurant) => {
-    return restaurant.delivery === selectedDelivery;
-  };
-
-  const listDelivery = (e) => {
-    e.preventDefault();
-    if (selectedDelivery) {
-      setSelectedDelivery(false)
-    } else {
-      setSelectedDelivery(true)
-    }
+    return (
+      restaurant.delivery === selectedDelivery &&
+      restaurant.pickup === selectedPickup
+    );
   };
 
   useEffect(() => {
@@ -48,55 +44,65 @@ export const RestaurantList = () => {
   return (
     <>
       {hasRestaurants && <SearchBar onChange={onSearchChange} />}
-      <button onClick={listDelivery}> delivery</button>
+      <DeliveryDiningIcon
+        sx={{ color: selectedDelivery ? "gold" : "white", fontSize: "50px" }}
+        onClick={() => setSelectedDelivery(!selectedDelivery)}
+      />
+      <TakeoutDiningIcon
+        sx={{
+          color: selectedPickup ? "gold" : "white",
+          fontSize: "50px",
+        }}
+        onClick={() => setSelectedPickup(!selectedPickup)}
+      />
+
       {restaurantData && searchValue !== "" && (
-            <>
-              {restaurantData
-                .filter(filterSearch)
-                .filter(filterDelivery)
-                .map(
-                  (
-                    {
-                      name,
-                      photos,
-                      social,
-                      rating,
-                      cuisine,
-                      formatted_address,
-                      opening_hours,
-                      delivery,
-                      pickup,
-                    },
-                    index
-                  ) => (
-                    <>
-                      <RestaurantCard
-                        onClick={() => {
-                          if (selectedRestaurant === index) {
-                            setSelectedRestaurant(null);
-                          } else {
-                            setSelectedRestaurant(index);
-                          }
-                        }}
-                        key={index}
-                        name={name}
-                        cuisine={cuisine}
-                        rating={rating}
-                        photos={photos[0].photo_reference}
-                        openingHours={opening_hours.hours.open}
-                        closingHours={opening_hours.hours.close}
-                        delivery={delivery}
-                        pickup={pickup}
-                      />
-                      {selectedRestaurant === index ? (
-                        <ListImg customerPhotos={photos[0].links} />
-                      ) : null}
-                    </>
-                  )
-                )}
-            </>
-          )}
+        <>
+          {restaurantData
+            .filter(filterSearch)
+            .filter(filterDelivery)
+            .map(
+              (
+                {
+                  name,
+                  photos,
+                  social,
+                  rating,
+                  cuisine,
+                  formatted_address,
+                  opening_hours,
+                  delivery,
+                  pickup,
+                },
+                index
+              ) => (
+                <>
+                  <RestaurantCard
+                    onClick={() => {
+                      if (selectedRestaurant === index) {
+                        setSelectedRestaurant(null);
+                      } else {
+                        setSelectedRestaurant(index);
+                      }
+                    }}
+                    key={index}
+                    name={name}
+                    cuisine={cuisine}
+                    rating={rating}
+                    photos={photos[0].photo_reference}
+                    openingHours={opening_hours.hours.open}
+                    closingHours={opening_hours.hours.close}
+                    delivery={delivery}
+                    pickup={pickup}
+                  />
+                  {selectedRestaurant === index ? (
+                    <ListImg customerPhotos={photos[0].links} />
+                  ) : null}
+                </>
+              )
+            )}
+        </>
+      )}
     </>
   );
 };
-
