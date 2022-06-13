@@ -21,8 +21,7 @@ export const RestaurantList = () => {
   };
 
   const filterDelivery = (restaurant) => {
-    return restaurant.delivery === true
-   
+    return restaurant.delivery === selectedDelivery;
   };
 
   const listDelivery = (e) => {
@@ -50,7 +49,7 @@ export const RestaurantList = () => {
     <>
       {hasRestaurants && <SearchBar onChange={onSearchChange} />}
       <button onClick={listDelivery}> delivery</button>
-      {restaurantData && searchValue !== "" || selectedDelivery === true && (
+      {restaurantData && searchValue !== "" && (
             <>
               {restaurantData
                 .filter(filterSearch)
