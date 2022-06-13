@@ -4,7 +4,7 @@ import ImageListItem from "@mui/material/ImageListItem";
 import { Paper } from "@mui/material";
 
 
-export const ListImg = ({customerPhotos}) => {  
+export const ListImg = ({ customerPhotos }) => {  
 
   return (
     <Paper sx={{padding: "16px"}}>
