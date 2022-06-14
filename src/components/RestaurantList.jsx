@@ -19,7 +19,10 @@ export const RestaurantList = () => {
   };
 
   const filterSearch = (restaurant) => {
-    return restaurant.cuisine.toString().toLowerCase().includes(searchValue);
+    return (
+      restaurant.cuisine.toLowerCase().includes(searchValue.toLowerCase()) ||
+      restaurant.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
   };
 
   const filterDelivery = (restaurant) => {
@@ -38,6 +41,7 @@ export const RestaurantList = () => {
       setRestaurantData(data.results);
     };
     getApiRestaurant();
+   
   }, []);
 
   const hasRestaurants = restaurantData.length > 0;
