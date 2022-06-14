@@ -1,4 +1,4 @@
-## restaurant finder
+## Restaurant finder
 
 We created this onlineShopping as a final project of JavaScript Course by [ReDI School](https://www.redi-school.org/)
 
