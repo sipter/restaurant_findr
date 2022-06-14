@@ -17,8 +17,9 @@ Users should be able to:
 
 ### Authors
 
-https://github.com/arianecrestani
-https://github.com/sipter
+- https://github.com/arianecrestani
+
+- https://github.com/sipter
 
 
 ![](./preview.png)
