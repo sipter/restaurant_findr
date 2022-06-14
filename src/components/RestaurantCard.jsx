@@ -69,15 +69,6 @@ export const RestaurantCard = ({
             {pickup === true ? <DoneIcon /> : <CloseIcon />}
           </Typography>
         </Box>
-        {/* <CardActions>
-          <Button
-            variant="outlined"
-            endIcon={<AddIcon />}
-            onClick={() => addItemToCart(starter)}
-          >
-            {starter.price}
-          </Button>
-        </CardActions> */}
       </CardContent>
       <CardMedia
         sx={{ width: 151, height: "auto" }}

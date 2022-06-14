@@ -44,18 +44,24 @@ export const RestaurantList = () => {
   return (
     <>
       {hasRestaurants && <SearchBar onChange={onSearchChange} />}
-      <DeliveryDiningIcon
-        sx={{ color: selectedDelivery ? "gold" : "white", fontSize: "50px" }}
-        onClick={() => setSelectedDelivery(!selectedDelivery)}
-      />
-      <TakeoutDiningIcon
-        sx={{
-          color: selectedPickup ? "gold" : "white",
-          fontSize: "50px",
-        }}
-        onClick={() => setSelectedPickup(!selectedPickup)}
-      />
-
+      {searchValue !== "" && (
+        <>
+          <DeliveryDiningIcon
+            sx={{
+              color: selectedDelivery ? "gold" : "white",
+              fontSize: "50px",
+            }}
+            onClick={() => setSelectedDelivery(!selectedDelivery)}
+          />
+          <TakeoutDiningIcon
+            sx={{
+              color: selectedPickup ? "gold" : "white",
+              fontSize: "50px",
+            }}
+            onClick={() => setSelectedPickup(!selectedPickup)}
+          />
+        </>
+      )}
       {restaurantData && searchValue !== "" && (
         <>
           {restaurantData
