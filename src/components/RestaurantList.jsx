@@ -50,6 +50,7 @@ export const RestaurantList = () => {
             sx={{
               color: selectedDelivery ? "gold" : "white",
               fontSize: "50px",
+              margin: "5px",
             }}
             onClick={() => setSelectedDelivery(!selectedDelivery)}
           />
@@ -57,6 +58,7 @@ export const RestaurantList = () => {
             sx={{
               color: selectedPickup ? "gold" : "white",
               fontSize: "50px",
+              margin: "5px",
             }}
             onClick={() => setSelectedPickup(!selectedPickup)}
           />
@@ -97,6 +99,7 @@ export const RestaurantList = () => {
                     rating={rating}
                     photos={photos[0].photo_reference}
                     openingHours={opening_hours.hours.open}
+                    openNow={opening_hours.open_now}
                     closingHours={opening_hours.hours.close}
                     delivery={delivery}
                     pickup={pickup}

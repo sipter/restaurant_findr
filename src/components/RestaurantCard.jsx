@@ -8,6 +8,9 @@ import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
 import TakeoutDiningIcon from "@mui/icons-material/TakeoutDining";
+import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
+import AlarmOffIcon from "@mui/icons-material/AlarmOff";
+
 
 export const RestaurantCard = ({
   name,
@@ -17,6 +20,7 @@ export const RestaurantCard = ({
   cuisine,
   formatted_address,
   openingHours,
+  openNow,
   delivery,
   pickup,
   closingHours,
@@ -58,7 +62,7 @@ export const RestaurantCard = ({
           }}
         >
           <Typography component="p">
-            <StarIcon sx={{ color: "gold" }} /> {rating} 
+            <StarIcon sx={{ color: "gold" }} /> {rating}
           </Typography>
           <Typography component="p">
             <DeliveryDiningIcon sx={{ color: "gold" }} />
@@ -67,6 +71,10 @@ export const RestaurantCard = ({
           <Typography component="p">
             <TakeoutDiningIcon sx={{ color: "gold" }} />
             {pickup === true ? <DoneIcon /> : <CloseIcon />}
+          </Typography>
+          <Typography component="p">
+            {openNow === true && <AccessAlarmIcon sx={{ color: "gold" }} />}
+            {openNow === false && <AlarmOffIcon sx={{ color: "gold" }} />}
           </Typography>
         </Box>
       </CardContent>
