@@ -27,7 +27,7 @@ export const RestaurantList = () => {
 
   const filterDelivery = (restaurant) => {
     return (
-      restaurant.delivery === selectedDelivery &&
+      restaurant.delivery === selectedDelivery ||
       restaurant.pickup === selectedPickup
     );
   };
@@ -41,33 +41,31 @@ export const RestaurantList = () => {
       setRestaurantData(data.results);
     };
     getApiRestaurant();
-   
   }, []);
 
   const hasRestaurants = restaurantData.length > 0;
   return (
     <>
-      {hasRestaurants && <SearchBar onChange={onSearchChange} />}
-      {searchValue !== "" && (
-        <>
-          <DeliveryDiningIcon
-            sx={{
-              color: selectedDelivery ? "gold" : "white",
-              fontSize: "50px",
-              margin: "5px",
-            }}
-            onClick={() => setSelectedDelivery(!selectedDelivery)}
-          />
-          <TakeoutDiningIcon
-            sx={{
-              color: selectedPickup ? "gold" : "white",
-              fontSize: "50px",
-              margin: "5px",
-            }}
-            onClick={() => setSelectedPickup(!selectedPickup)}
-          />
-        </>
-      )}
+      {hasRestaurants && <SearchBar onChange={onSearchChange} />}(
+      <>
+        <DeliveryDiningIcon
+          sx={{
+            color: selectedDelivery ? "gold" : "white",
+            fontSize: "50px",
+            margin: "5px",
+          }}
+          onClick={() => setSelectedDelivery(!selectedDelivery)}
+        />
+        <TakeoutDiningIcon
+          sx={{
+            color: selectedPickup ? "gold" : "white",
+            fontSize: "50px",
+            margin: "5px",
+          }}
+          onClick={() => setSelectedPickup(!selectedPickup)}
+        />
+      </>
+      )
       {restaurantData && searchValue !== "" && (
         <>
           {restaurantData
