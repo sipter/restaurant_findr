@@ -1,6 +1,6 @@
 ## Restaurant finder
 
-We created this onlineShopping as a final project of JavaScript Course by [ReDI School](https://www.redi-school.org/)
+We created this RestaurantFinder as a final project of JavaScript Course by [ReDI School](https://www.redi-school.org/)
 
 ### Overview
 
